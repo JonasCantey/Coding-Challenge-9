@@ -78,6 +78,25 @@ class Company {
             });
             return totalPayroll;
         }
+
+        //Task 5
+        promoteToManager (employee, teamSize) { //created method promote to manager
+            const index = this.employees.indexOf(employee); //basically looks through the array until employee is found
+
+            if (index !== -1) {     //states that if employee is found then do the following:
+                const newManager = new Manager( //add a new manager using all employees old properties and add team size
+                    employee.name,
+                    employee.id,
+                    employee.department,
+                    employee.salary,
+                    teamSize
+                );
+                this.employees[index] = newManager; //registers employee as manager in array
+                console.log(`${employee.name} has been promoted to Manager.`);
+            } else {
+                console.log("Employee not found."); //if the employee isnt found console log employee not found
+            }
+        }
 }
 
 const company = new Company("TechCorp");    //named the company
@@ -90,4 +109,14 @@ company.listEmployees();        //called the list employees method
 //Task 4: Implementing a Payroll System
 console.log("Task 4: Implementing a Payroll System")
 
-console.log(`Total Payroll: $${company.calculateTotalPayroll()}`);
+console.log(`Total Payroll: $${company.calculateTotalPayroll()}`); //Changes are above, here is console log for changes
+
+//Task 5: Implementing Promotions
+console.log("Task 5: Implementing Promotions")
+
+company.promoteToManager(emp1, 3); //Called promote to manager method and input values
+
+console.log("After Promotion:");    //console logged all employees in company class.
+company.listEmployees();
+
+
