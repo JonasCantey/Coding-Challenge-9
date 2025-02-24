@@ -9,7 +9,7 @@ class Employee {                                //Declared a new class "Employee
     }
 
     getDetails() {              //Just a function that console.logs all the properties of a class object
-        return `Employee: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary: ${this.salary}`;
+        return `Employee: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary: $${this.salary}`;
     }
 
     calculateAnnualSalary(){        //Created a function that calculates annual salary.
@@ -37,7 +37,11 @@ class Manager extends Employee {    //Created a new class that inherits the Empl
     }
 
     calculateBonus(){       //Method that calculated bonus
-        return this.calculateAnnualSalary() * 0.1;
+        return super.calculateAnnualSalary() * 0.1;
+    }
+
+    calculateAnnualSalary() {
+        return super.calculateAnnualSalary() + this.calculateBonus();
     }
 }
 
@@ -66,6 +70,14 @@ class Company {
             console.log(employee.getDetails());
         });
     }
+        //Task 4: Method to calculate total payroll
+        calculateTotalPayroll(){
+            let totalPayroll = 0
+            this.employees.forEach(employee => {
+                totalPayroll += employee.calculateAnnualSalary();
+            });
+            return totalPayroll;
+        }
 }
 
 const company = new Company("TechCorp");    //named the company
@@ -73,3 +85,9 @@ company.addEmployee(emp1);      //added the employee to employees array
 company.addEmployee(mgr1);      //added the manager to the employees array
 
 company.listEmployees();        //called the list employees method
+
+
+//Task 4: Implementing a Payroll System
+console.log("Task 4: Implementing a Payroll System")
+
+console.log(`Total Payroll: $${company.calculateTotalPayroll()}`);
