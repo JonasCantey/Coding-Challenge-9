@@ -9,8 +9,7 @@ class Employee {                                //Declared a new class "Employee
     }
 
     getDetails() {              //Just a function that console.logs all the properties of a class object
-        return `Employee: ${this.name}, ID: ${this.id}, Department: ${this.department}, 
-        Salary: ${this.salary}`;
+        return `Employee: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary: ${this.salary}`;
     }
 
     calculateAnnualSalary(){        //Created a function that calculates annual salary.
@@ -34,8 +33,7 @@ class Manager extends Employee {    //Created a new class that inherits the Empl
     }
 
     getDetails() {          //Overrided the getDetails to include team size
-        return `Manager: ${this.name}, ID: ${this.ID}, Department: ${this.department}, Salary:
-        $${this.salary}, Team Size: ${this.teamSize}`;
+        return `Manager: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary: $${this.salary}, Team Size: ${this.teamSize}`;
     }
 
     calculateBonus(){       //Method that calculated bonus
@@ -47,3 +45,31 @@ const mgr1 = new Manager("John Smith", 201, "IT", 8000, 5); //Created manager cl
 
 console.log(mgr1.getDetails()); //console logged
 console.log(mgr1.calculateBonus());
+
+
+//Task 3: Creating a Company Class
+console.log("Task 3: Creating a Company Class")
+
+class Company {
+    constructor (name) { //constructor that initializes company name and employee array
+        this.name = name;
+        this.employees = []; //this is the employees array I created
+    }
+
+    addEmployee(employee) {     //method to add an employee to the employees array
+        this.employees.push(employee); 
+    }
+
+    listEmployees(){    //method that says for each employee in array, console log getDetails.
+        console.log(`Employees of ${this.name}:`);
+        this.employees.forEach(employee => {
+            console.log(employee.getDetails());
+        });
+    }
+}
+
+const company = new Company("TechCorp");    //named the company
+company.addEmployee(emp1);      //added the employee to employees array
+company.addEmployee(mgr1);      //added the manager to the employees array
+
+company.listEmployees();        //called the list employees method
